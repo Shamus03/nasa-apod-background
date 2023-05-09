@@ -1,0 +1,2 @@
+0 * * * * root /usr/bin/fish /opt/nasa-apod-background/nasa-apod-background.fish >> /opt/nasa-apod-background/cron.log 2>&1
+1 * * * * root logrotate -s /opt/nasa-apod-background/logrotate.status /opt/nasa-apod-background/logrotate.config

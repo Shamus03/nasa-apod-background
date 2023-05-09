@@ -1,0 +1,7 @@
+Package: nasa-apod-background
+Version: 1.0.0
+Maintainer: Shamus <nasa-apod-background@shamus.dev>
+Description: Automatically set your background to the NASA picture of the day
+Homepage: https://github.com/Shamus03/nasa-apod-background
+Architecture: all
+Depends: curl, debconf (>= 0.2.17), fish, imagemagick, jp, logrotate

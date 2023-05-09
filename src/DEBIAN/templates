@@ -1,0 +1,3 @@
+Template: nasa-apod-background/api_key
+Type: string
+Description: Enter your NASA API key. Get one from https://api.nasa.gov/
