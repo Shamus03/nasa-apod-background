@@ -10,6 +10,3 @@ if [ -z "$RET" ]; then
   echo "API key is required" >&2
   exit 1
 fi
-
-printf '%s' "$RET" > /opt/nasa-apod-background/api.key
-chmod 600 /opt/nasa-apod-background/api.key
