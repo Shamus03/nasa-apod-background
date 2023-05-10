@@ -2,9 +2,9 @@
 
 . /usr/share/debconf/confmodule
 
-db_get nasa-apod-background/api_key
-
 mkdir -p /opt/nasa-apod-background
+
+db_get nasa-apod-background/api_key
 printf '%s' "$RET" > /opt/nasa-apod-background/api.key
 
 /usr/bin/fish /opt/nasa-apod-background/nasa-apod-background.fish
