@@ -8,11 +8,3 @@ mkdir -p /opt/nasa-apod-background
 printf '%s' "$RET" > /opt/nasa-apod-background/api.key
 
 /usr/bin/fish /opt/nasa-apod-background/nasa-apod-background.fish
-
-pid="$(pgrep gnome-session)"
-export DBUS_SESSION_BUS_ADDRESS="$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$pid/environ | cut -d= -f2-)"
-
-gsettings set org.gnome.desktop.background picture-uri file:///opt/nasa-apod-background/apod_desktop.jpg
-gsettings set org.gnome.desktop.background picture-options wallpaper
-gsettings set org.gnome.desktop.screensaver picture-uri file:///opt/nasa-apod-background/apod_lock.jpg
-gsettings set org.gnome.desktop.screensaver picture-options wallpaper
