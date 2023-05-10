@@ -5,10 +5,6 @@ clean:
 	rm -f nasa-apod-background.deb
 .PHONY: clean
 
-configure: 
-	
-.PHONY: configure
-
 install: nasa-apod-background.deb
 	apt-get install --reinstall ./nasa-apod-background.deb
 .PHONY: install
