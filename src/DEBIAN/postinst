@@ -8,4 +8,6 @@ db_get nasa-apod-background/api_key
 printf '%s' "$RET" > /opt/nasa-apod-background/api.key
 chmod 600 /opt/nasa-apod-background/api.key
 
-/usr/bin/fish /opt/nasa-apod-background/nasa-apod-background.fish
+if test -f /opt/nasa-apod-background/nasa-apod-background.fish; then
+  /usr/bin/fish /opt/nasa-apod-background/nasa-apod-background.fish
+fi
