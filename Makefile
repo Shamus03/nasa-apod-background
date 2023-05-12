@@ -1,4 +1,4 @@
-nasa-apod-background.deb: $(wildcard src/**/*)
+nasa-apod-background.deb: $(wildcard src/* src/**/* src/**/**/*)
 	dpkg-deb --root-owner-group --build ./src nasa-apod-background.deb
 
 clean:
