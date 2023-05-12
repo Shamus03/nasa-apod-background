@@ -34,7 +34,7 @@ if string length -- $_flag_force; or test "$apod_date" != "$last_downloaded_date
   end
 
   # Resize full image to fit screen
-  and convert -background black -resize 1920 -extent 1920x1080 -gravity center -quiet $img_full $img_desktop
+  and convert -background black -resize 1920x1080 -extent 1920x1080 -gravity center -quiet $img_full $img_desktop
 
   # Create captioned image for lock screen
   and convert $img_desktop \( -background none -size 1920x -fill white -undercolor black -pointsize 20 caption:(string replace --all "'" "\'" $apod_explanation) \) -gravity southwest -compose over -composite $img_lock
