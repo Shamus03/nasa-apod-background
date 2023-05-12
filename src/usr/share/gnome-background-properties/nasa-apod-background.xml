@@ -7,7 +7,7 @@
     <filename>/opt/nasa-apod-background/apod_desktop.jpg</filename>
     <options>zoom</options>
     <shade_type>solid</shade_type>
-    <pcolor>#ffffff</pcolor>
+    <pcolor>#000000</pcolor>
     <scolor>#000000</scolor>
   </wallpaper>
   <wallpaper deleted="false">
@@ -16,7 +16,7 @@
     <filename>/opt/nasa-apod-background/apod_lock.jpg</filename>
     <options>zoom</options>
     <shade_type>solid</shade_type>
-    <pcolor>#ffffff</pcolor>
+    <pcolor>#000000</pcolor>
     <scolor>#000000</scolor>
   </wallpaper>
 </wallpapers>
