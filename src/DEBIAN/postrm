@@ -5,7 +5,7 @@ if [ "$1" = "purge" -a -e /usr/share/debconf/confmodule ]; then
   db_purge
   rm -rf /opt/nasa-apod-background
 else
-  rm -rf /opt/nasa-apod-background/api.key
+  rm -rf /opt/nasa-apod-background/api.url
   rm -rf /opt/nasa-apod-background/cron.log
   rm -rf /opt/nasa-apod-background/logrotate.config
   rm -rf /opt/nasa-apod-background/nasa-apod-background.fish
