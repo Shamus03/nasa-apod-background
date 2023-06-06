@@ -4,9 +4,9 @@
 
 mkdir -p /opt/nasa-apod-background
 
-db_get nasa-apod-background/api_key
-printf '%s' "$RET" > /opt/nasa-apod-background/api.key
-chmod 600 /opt/nasa-apod-background/api.key
+db_get nasa-apod-background/api_url
+printf '%s' "$RET" > /opt/nasa-apod-background/api.url
+chmod 600 /opt/nasa-apod-background/api.url
 
 if test -f /opt/nasa-apod-background/nasa-apod-background.fish; then
   /usr/bin/fish /opt/nasa-apod-background/nasa-apod-background.fish

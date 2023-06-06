@@ -2,11 +2,11 @@
 
 . /usr/share/debconf/confmodule
 
-db_input critical nasa-apod-background/api_key || :
+db_input medium nasa-apod-background/api_url || :
 db_go
 
-db_get nasa-apod-background/api_key
+db_get nasa-apod-background/api_url
 if [ -z "$RET" ]; then
-  echo "API key is required" >&2
+  echo "API url is required" >&2
   exit 1
 fi

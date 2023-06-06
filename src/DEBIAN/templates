@@ -1,3 +1,4 @@
-Template: nasa-apod-background/api_key
+Template: nasa-apod-background/api_url
 Type: string
-Description: Enter your NASA API key. Get one from https://api.nasa.gov/
+Default: https://api.nasa.gov/planetary/apod?api_key=ENTER_AN_API_KEY
+Description: Enter the NASA APOD API url. Make sure to include your API key if needed.

@@ -5,21 +5,29 @@ or return
 
 set config_dir /opt/nasa-apod-background
 set date_file $config_dir/date.txt
-set api_key_file $config_dir/api.key
+set api_url_file $config_dir/api.url
 
 set img_full $config_dir/apod_full.jpg
 set img_desktop $config_dir/apod_desktop.jpg
 set img_lock $config_dir/apod_lock.jpg
 
-if not test -f $api_key_file
-  echo "Api key not found - please create a file $api_key_file containing your NASA API key"
+if not test -f $api_url_file
+  echo "Api url file not found - please create a file $api_url_file containing the NASA API url"
   return
 end
-set api_key (cat $api_key_file)
+set api_url (cat $api_url_file)
 
-set apod (curl --silent "https://api.nasa.gov/planetary/apod?api_key=$api_key" | jp @)
-or begin
+set apod (curl --silent $api_url)
+
+set apod_json (echo $apod | jp @)
+if test "$apod_json" = null
   echo "APOD returned invalid json: $apod"
+  return
+end
+
+set apod_error (echo $apod | jp -u error)
+if test "$apod_error" != null
+  echo "APOD error: $apod_error"
   return
 end
 
