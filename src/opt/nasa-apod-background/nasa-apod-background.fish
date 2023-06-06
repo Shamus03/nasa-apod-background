@@ -17,7 +17,12 @@ if not test -f $api_key_file
 end
 set api_key (cat $api_key_file)
 
-set apod (curl -s "https://api.nasa.gov/planetary/apod?api_key=$api_key")
+set apod (curl --silent "https://api.nasa.gov/planetary/apod?api_key=$api_key" | jp @)
+or begin
+  echo "APOD returned invalid json: $apod"
+  exit 1
+end
+
 set apod_url (echo $apod | jp -u url)
 set apod_hdurl (echo $apod | jp -u hdurl)
 set apod_explanation (echo $apod | jp -u explanation)
@@ -29,7 +34,7 @@ set last_downloaded_date (cat $date_file 2>/dev/null)
 if string length -- $_flag_force; or test "$apod_date" != "$last_downloaded_date"
   rm -f $date_file
 
-  if test $apod_media_type = video
+  if test "$apod_media_type" = video
     echo "Today's APOD is a video, will not download"
   else
     if not wget -O $img_full $apod_hdurl
