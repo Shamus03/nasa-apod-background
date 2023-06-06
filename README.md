@@ -17,7 +17,7 @@ After installing you should see the current NASA APOD as an option in your wallp
 
 ## Reconfigure
 
-May be needed to set up a new API key
+May be needed to set up a new API url.
 
 ```
 sudo dpkg-reconfigure nasa-apod-background
