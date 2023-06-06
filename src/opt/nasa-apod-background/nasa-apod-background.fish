@@ -17,7 +17,11 @@ if not test -f $api_url_file
 end
 set api_url (cat $api_url_file)
 
-set apod (curl --silent $api_url)
+if not string match '*\?' $api_url
+    set api_url $api_url'?'
+end
+
+set apod (curl --silent "$api_url&thumbs=true")
 
 set apod_json (echo $apod | jp @)
 if test "$apod_json" = null
@@ -36,6 +40,7 @@ set apod_hdurl (echo $apod | jp -u hdurl)
 set apod_explanation (echo $apod | jp -u explanation)
 set apod_date (echo $apod | jp -u date)
 set apod_media_type (echo $apod | jp -u media_type)
+set apod_thumbnail_url (echo $apod | jp -u thumbnail_url)
 
 set last_downloaded_date (cat $date_file 2>/dev/null)
 
@@ -43,20 +48,21 @@ if string length -- $_flag_force; or test "$apod_date" != "$last_downloaded_date
   rm -f $date_file
 
   if test "$apod_media_type" = video
-    echo "Today's APOD is a video, will not download"
+    echo "Today's APOD is a video, will use thumbnail"
+    wget -O $img_full $apod_thumbnail_url
   else
     if not wget -O $img_full $apod_hdurl
       echo "HD image not found: $apod_hdurl"
       echo "Will download low quality version"
       wget -O $img_full $apod_url
     end
-
-    # Resize full image to fit screen
-    and convert -background black -resize 1920x1080 -extent 1920x1080 -gravity center -quiet $img_full $img_desktop
-
-    # Create captioned image for lock screen
-    and convert $img_desktop \( -background none -size 1920x -fill white -undercolor black -pointsize 20 caption:(string replace --all "'" "\'" $apod_explanation) \) -gravity southwest -compose over -composite $img_lock
   end
+
+  # Resize full image to fit screen
+  and convert -background black -resize 1920x1080 -extent 1920x1080 -gravity center -quiet $img_full $img_desktop
+
+  # Create captioned image for lock screen
+  and convert $img_desktop \( -background none -size 1920x -fill white -undercolor black -pointsize 20 caption:(string replace --all "'" "\'" $apod_explanation) \) -gravity southwest -compose over -composite $img_lock
 
   and echo $apod_date > $date_file
 end
