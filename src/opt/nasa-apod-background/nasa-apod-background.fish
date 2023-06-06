@@ -13,14 +13,14 @@ set img_lock $config_dir/apod_lock.jpg
 
 if not test -f $api_key_file
   echo "Api key not found - please create a file $api_key_file containing your NASA API key"
-  exit 1
+  return
 end
 set api_key (cat $api_key_file)
 
 set apod (curl --silent "https://api.nasa.gov/planetary/apod?api_key=$api_key" | jp @)
 or begin
   echo "APOD returned invalid json: $apod"
-  exit 1
+  return
 end
 
 set apod_url (echo $apod | jp -u url)
