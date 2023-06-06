@@ -2,7 +2,7 @@
 
 . /usr/share/debconf/confmodule
 
-db_input medium nasa-apod-background/api_url || :
+db_input high nasa-apod-background/api_url || :
 db_go
 
 db_get nasa-apod-background/api_url
