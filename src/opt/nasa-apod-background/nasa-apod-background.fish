@@ -17,7 +17,7 @@ if not test -f $api_url_file
 end
 set api_url (cat $api_url_file)
 
-if not string match '*\?' $api_url
+if not string match '*\?*' $api_url
     set api_url $api_url'?'
 end
 
